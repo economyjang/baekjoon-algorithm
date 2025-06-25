@@ -1,24 +1,23 @@
 import java.util.*;
 
 class Solution {
-    public int solution(int[] nums) {
-        Set<Integer> set = new HashSet<>();
+    public int solution(int[] arr) {
+       Set<Integer> sumSet = new HashSet<>();
 
-        // 윈도우 사이즈 결정
-        for(int windowSize = 1; windowSize <= nums.length; windowSize++) {
-            // 윈도우 시작 위치
-            for(int windowStart = 0; windowStart < nums.length; windowStart++) {
-                // 윈도우 총합
+        // 윈도우 사이즈
+        for(int windowSize = 1; windowSize <= arr.length; windowSize++) {
+            // 윈도우 시작
+            for(int windowStart = 0; windowStart < arr.length; windowStart++) {
+                // sum
                 int sum = 0;
-                for(int windowIndex = 0; windowIndex < windowSize; windowIndex++) {
-                    int index = (windowStart + windowIndex) % nums.length;
-                    sum += nums[index];
+                for(int windowIdx = windowStart; windowIdx < windowSize + windowStart; windowIdx++) {
+                    sum += arr[windowIdx % arr.length];
                 }
 
-                set.add(sum);
+                sumSet.add(sum);
             }
         }
 
-        return set.size();
+        return sumSet.size(); 
     }
 }
