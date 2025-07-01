@@ -1,19 +1,21 @@
 class Solution {
     public int solution(String t, String p) {
-        int count = 0;
+        int result = 0;
+
         long pNum = Long.parseLong(p);
-        int left = 0, right = p.length() - 1;
+        int windowSize = p.length();
+        int originSize = t.length();
 
-        while (right < t.length()) {
-            String subString = t.substring(left, right + 1);
-            long tNum = Long.parseLong(subString);
-
-            if (tNum <= pNum) count++;
+        int left = 0, right = windowSize - 1;
+        while(right < originSize) {
+            String subNumStr = t.substring(left, right + 1);
+            Long subNum = Long.parseLong(subNumStr);
+            if(subNum <= pNum) result++;
 
             left++;
             right++;
         }
 
-        return count;
+        return result;
     }
 }
